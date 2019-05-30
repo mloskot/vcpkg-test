@@ -1,5 +1,7 @@
 # Vcpkg Test
 
+[![AppVeyor](https://ci.appveyor.com/api/projects/status/l7ouc1pxuep1qhfy/branch/master?svg=true)](https://ci.appveyor.com/project/mloskot/vcpkg-test/branch/master)
+
 Collection of minimal client programs linking against variety of
 libraries deployed by [Vcpkg](https://github.com/Microsoft/vcpkg).
 
