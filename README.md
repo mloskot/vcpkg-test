@@ -26,6 +26,8 @@ Check file listing for `test_<library>.cpp`.
 ```
 git clone https://github.com/mloskot/vcpkg-test.git
 cd vcpkg-test
+.\bootstrap.bat
 .\install.bat
 .\build.bat
+.\test.bat
 ```
