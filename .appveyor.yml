@@ -11,9 +11,38 @@ shallow_clone: true
 environment:
   matrix:
     - cxxstd: 14
+      vs: 2017
     - cxxstd: 17
+      vs: 2017
+
+matrix:
+  fast_finish: true
 
 install:
+  - ps: Write-Host "Checking version of CMake latest release" -ForegroundColor Magenta;
+  - ps: |
+      $cmakeDownloadPage = Invoke-WebRequest 'https://cmake.org/download/'
+      $latestVersion = ($cmakeDownloadPage.AllElements | `
+          Where {$_.tagName -match 'H3' -and $_.innerText -match "Latest Release" } | `
+          Select-Object -ExpandProperty InnerText).Trim();
+      if ($latestVersion -match 'Latest Release\s+\((\d+\.\d+\.\d+)\)') {
+          $latestVersion = $matches[1]
+      } else {
+          Write-Host 'Failed to extract version of latest release';
+          exit 1;
+      }
+      $major, $minor, $micro = $latestVersion.split('.');
+      $cmakeDir = ('cmake-{0}.{1}.{2}-win64-x64' -f $major, $minor, $micro);
+      $cmakeZip = ('{0}.zip' -f $cmakeDir);
+      $cmakeUrl = ('https://cmake.org/files/v{0}.{1}/{2}' -f $major, $minor, $cmakeZip);
+      Write-Host "Installing $cmakeUrl" -ForegroundColor Magenta;
+      [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
+      $cmakeZip = ('C:\{0}' -f $cmakeZip);
+      (New-Object System.Net.WebClient).DownloadFile($cmakeUrl, $cmakeZip);
+      Expand-Archive $cmakeZip -DestinationPath C:\
+      $env:Path = ('C:\{0}\bin;{1}' -f $cmakeDir, $env:Path);
+  - cmake --version
+  - ps: Write-Host "Installing latest Vcpkg" -ForegroundColor Magenta;
   - .\bootstrap.bat
   - .\install.bat
 
