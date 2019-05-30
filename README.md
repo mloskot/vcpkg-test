@@ -3,7 +3,10 @@
 Collection of minimal client programs linking against variety of
 libraries deployed by [Vcpkg](https://github.com/Microsoft/vcpkg).
 
-Goal: Basic verification of Vcpkg packages usability on Windows.
+## Goals
+
+* Verify usability of Vcpkg packages selection.
+* Show how to use Vcpkg packages in CMakeLists.txt.
 
 ## Prerequisites
 
