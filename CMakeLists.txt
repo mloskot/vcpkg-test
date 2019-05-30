@@ -13,7 +13,33 @@ message(STATUS "vcpkg-test: Require C++${CMAKE_CXX_STANDARD}")
 enable_testing()
 
 #-------------------------------------------------------------------------------
-# LibRaw
+# libjpeg
+#-------------------------------------------------------------------------------
+message(STATUS "vcpkg-test: Configuring test_libjpeg with CMake Find-module")
+find_package(JPEG REQUIRED)
+add_executable(test_libjpeg test_libjpeg.cpp)
+target_link_libraries(test_libjpeg PRIVATE JPEG::JPEG)
+add_test(NAME t_libjpeg COMMAND test_libjpeg)
+
+#-------------------------------------------------------------------------------
+# libpng
+#-------------------------------------------------------------------------------
+message(STATUS "vcpkg-test: Configuring test_libpng with CMake Find-module")
+find_package(PNG REQUIRED)
+add_executable(test_libpng test_libpng.cpp)
+target_link_libraries(test_libpng PRIVATE PNG::PNG)
+add_test(NAME t_libpng COMMAND test_libpng)
+
+# FIXME: vcpkg deploys libpng16.cmake, but not libpng-config.cmake
+#        and where the 16 comes from?
+#message(STATUS "vcpkg-test: Configuring test_libpng with Vcpkg Config-module")
+#find_package(libpng CONFIG REQUIRED)
+#add_executable(test_libpng_config test_libpng.cpp)
+#target_link_libraries(test_libpng_config PRIVATE libpng)
+#add_test(NAME t_libpng_config COMMAND test_libpng_config)
+
+#-------------------------------------------------------------------------------
+# libraw
 #-------------------------------------------------------------------------------
 message(STATUS "vcpkg-test: Configuring test_libraw with Vcpkg Config-module")
 find_package(LibRaw REQUIRED)
@@ -24,7 +50,7 @@ target_compile_definitions(test_libraw_config PRIVATE ${LibRaw_DEFINITIONS})
 add_test(NAME t_libraw_config COMMAND test_libraw_config)
 
 #-------------------------------------------------------------------------------
-# SQLite3
+# sqlite3
 #-------------------------------------------------------------------------------
 message(STATUS "vcpkg-test: Configuring test_sqlite3 with CMake Find-module")
 find_package(SQLite3 REQUIRED)
