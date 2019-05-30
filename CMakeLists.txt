@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
 project(vcpkg-test VERSION 1.0.0 LANGUAGES CXX
-  DESCRIPTION "Test project verifying Vcpkg packages usability on Windows"
+  DESCRIPTION "Test project to verify usability of selection of Vcpkg packages on Windows"
   HOMEPAGE_URL "https://github.com/mloskot/vcpkg-test")
 
 set(CMAKE_CXX_STANDARD 11 CACHE
