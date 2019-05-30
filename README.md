@@ -7,18 +7,16 @@ libraries deployed by [Vcpkg](https://github.com/Microsoft/vcpkg).
 
 ## Goals
 
-* Verify usability of Vcpkg packages selection.
+* Verify usability of selection of Vcpkg packages.
 * Show how to use Vcpkg packages in CMakeLists.txt.
+* Test Vcpkg end-to-end to identify issues and prepare pull requests.
 
 ## Prerequisites
 
 * CMake 3.14+
 * Vcpkg (`master`)
 * Visual Studio 2017+
-
-Optionally:
-
-* `pip install cmakelint`
+* `pip install cmakelint` (optional)
 
 ## Programs
 
