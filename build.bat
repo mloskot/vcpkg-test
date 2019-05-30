@@ -1,10 +1,11 @@
 @echo off
-if not exist %CD%\vcpkg\scripts\buildsystems\vcpkg.cmake (
-    @echo build.bat: File not found: %CD%\vcpkg\scripts\buildsystems\vcpkg.cmake
+set VCPKG_CMAKE=%CD%\_vcpkg\scripts\buildsystems\vcpkg.cmake
+if not exist %VCPKG_CMAKE% (
+    @echo build.bat: File not found: %VCPKG_CMAKE%
     exit /B 1
 )
-set BUILDDIR=build
+set BUILDDIR=_build
 set BUILDCFG=Release
 :: Use default generator in current environment
-cmake -S . -B %BUILDDIR% -DCMAKE_TOOLCHAIN_FILE=%CD%\vcpkg\scripts\buildsystems\vcpkg.cmake
-cmake --build %BUILDDIR% --config %BUILDCFG%
+cmake -S . -B %BUILDDIR% -DCMAKE_TOOLCHAIN_FILE=%VCPKG_CMAKE%
+cmake --build %BUILDDIR% --config %BUILDCFG% --verbose

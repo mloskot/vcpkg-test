@@ -12,6 +12,20 @@ message(STATUS "vcpkg-test: Require C++${CMAKE_CXX_STANDARD}")
 
 enable_testing()
 
+#-------------------------------------------------------------------------------
+# LibRaw
+#-------------------------------------------------------------------------------
+message(STATUS "vcpkg-test: Configuring test_libraw with Vcpkg Config-module")
+find_package(LibRaw REQUIRED)
+add_executable(test_libraw_config test_libraw.cpp)
+target_link_libraries(test_libraw_config PRIVATE ${LibRaw_LIBRARIES})
+target_include_directories(test_libraw_config PRIVATE ${LibRaw_INCLUDE_DIR})
+target_compile_definitions(test_libraw_config PRIVATE ${LibRaw_DEFINITIONS})
+add_test(NAME t_libraw_config COMMAND test_libraw_config)
+
+#-------------------------------------------------------------------------------
+# SQLite3
+#-------------------------------------------------------------------------------
 message(STATUS "vcpkg-test: Configuring test_sqlite3 with CMake Find-module")
 find_package(SQLite3 REQUIRED)
 add_executable(test_sqlite3 test_sqlite3.cpp)

@@ -1,5 +1,5 @@
 @echo off
-set BUILDDIR=build
+set BUILDDIR=_build
 set BUILDCFG=Release
 pushd %BUILDDIR%
 ctest --show-only

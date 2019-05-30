@@ -1,5 +1,5 @@
 /.venv/
 /.vs/
 /.vscode/
-/vcpkg/
+/*vcpkg*/
 /*build*/
