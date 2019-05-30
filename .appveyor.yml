@@ -1,0 +1,29 @@
+version: 1.0.{build}-{branch}
+
+image: Visual Studio 2017
+
+platform: x64
+
+configuration: Release
+
+shallow_clone: true
+
+environment:
+  matrix:
+    - cxxstd: 14
+    - cxxstd: 17
+
+install:
+  - .\bootstrap.bat
+  - .\install.bat
+
+build: off
+
+build_script:
+  - .\build.bat
+
+test_script:
+  - .\test.bat
+
+cache:
+  - c:\tools\vcpkg\installed\
