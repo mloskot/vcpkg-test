@@ -10,10 +10,11 @@ shallow_clone: true
 
 environment:
   matrix:
-    - cxxstd: 14
-      vs: 2017
-    - cxxstd: 17
-      vs: 2017
+    - vs: 2017
+      cxxstd: 14
+
+    - vs: 2017
+      cxxstd: 17
 
 matrix:
   fast_finish: true
